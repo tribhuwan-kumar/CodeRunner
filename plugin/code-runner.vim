@@ -1,4 +1,5 @@
 let s:terminal_bufnr = -1
+" Check os and shell
 function! GetShell(command)
     let escaped_command = shellescape(a:command, 2)
     if has('unix')
@@ -32,9 +33,37 @@ augroup END
 function! CodeRun()
     let l:ext = expand("%:e") 
     let l:fullpath = expand("%:p") 
+    let l:filename = expand("%:t:r")
 
     if l:ext == "py"
         call GetShell("python -u " . shellescape(l:fullpath)) 
+    elseif l:ext == "js"
+        call GetShell("node " . shellescape(l:fullpath))
+    elseif l:ext == "ts"
+        call GetShell("ts-node " . shellescape(l:fullpath))
+    elseif l:ext == "tsx"
+        call GetShell("ts-node " . shellescape(l:fullpath))
+    elseif l:ext == "c" || l:ext == "cpp"
+        let compile_command = l:ext == "c" ? 'gcc' : 'g++'
+        let compile_command .= ' ' . shellescape(l:fullpath)
+        let compile_command .= ' -o ' . shellescape('./' . l:filename)
+        let run_command = './' . shellescape(l:filename)
+        call GetShell(compile_command . " && " . run_command)
+    elseif l:ext == "java"
+        let compile_command = "javac " . shellescape(l:fullpath)
+        let run_command = "java " . shellescape(l:filename)
+        call GetShell(compile_command . " && " . run_command)
+        " call GetShell("javac " . shellescape(l:fullpath) . " && java " . shellescape(l:filename))
+    elseif l:ext == "go"
+        call GetShell("go run " . shellescape(l:fullpath))
+    elseif l:ext == "rs"
+        call GetShell("rustc " . shellescape(l:fullpath) . " && " . shellescape('./' . l:filename))
+    elseif l:ext == "php"
+        call GetShell("php " . shellescape(l:fullpath))
+    elseif l:ext == "lua"
+        call GetShell("lua " . shellescape(l:fullpath))
+    elseif l:ext == "sh"
+        call GetShell("bash " . shellescape(l:fullpath))    
     else
         call GetShell("echo 'Not supported filetype'")
     endif
