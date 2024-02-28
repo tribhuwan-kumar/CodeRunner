@@ -69,7 +69,7 @@ function! CodeRun()
     let l:filename = expand("%:t:r")
 
     if l:ext == "py"
-        call GetShell("python -u " . shellescape(l:fullpath)) 
+        call GetShell("python3 -u " . shellescape(l:fullpath)) 
     elseif l:ext == "js"
         call GetShell("node " . shellescape(l:fullpath))
     elseif l:ext == "ts"
