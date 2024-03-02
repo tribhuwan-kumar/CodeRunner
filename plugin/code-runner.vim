@@ -97,6 +97,8 @@ function! CodeRun()
         call GetShell("lua " . shellescape(l:fullpath))
     elseif l:ext == "sh"
         call GetShell("bash " . shellescape(l:fullpath))    
+    elseif l:ext == "rb"
+        call GetShell("ruby " . shellescape(l:fullpath))
     else
         call GetShell("echo 'Not supported filetype'")
     endif
