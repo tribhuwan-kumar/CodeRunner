@@ -1,24 +1,23 @@
-# CodeRunner
+# DexVim
 ```bash
- ______   ______  _______ _______   _______ _     _ __   _ __   _ _______ _______
-|        |      | |     | |______   |_____/ |     | | \  | | \  | |______ |_____/
-|______  |______| |_____| |______   |    \_ |_____| |  \_| |  \_| |______ |    \_
+_______ ______ __   __ _    _ _____  _    _
+|     | |_____   \ /    \  /    |    |\  /|
+|_____| |_____ __/ \__   \/   __|__  | \/ |
 
 ```
-## Code-runner-plugin-for-Nvim
-A Neovim plugin for running different types of files in intergrated Nvim terminal.
+## A simple plugin for code running in Nvim
 
-## Keyfeatures
+### Keyfeatures
 - No dependencies
 - Uses Nvim intergrated terminal like VS code
 - Opens Vertically or horizontally window, As you wish!!
 
-## Installation
+### Installation
 Use vim-plug or any plugin installer
 ```bash
-Plug 'tribhuwan-kumar/Code-runner-plugin-for-Nvim'
+Plug 'tribhuwan-kumar/DexVim'
 ```
-## Configuration
+### Configuration
 Use `:RunCode` for running code in Nvim
 
 Bind `RunCode` with your leader
