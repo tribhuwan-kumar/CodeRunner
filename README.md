@@ -25,7 +25,7 @@ Bind `RunCode` with your leader
 Use `vsplit` for vertical window & `botright split` for horizontal
 
 > [!NOTE]
-> Currently, supports Python, Java, Go, Rust, C/C++, Lua, Shell, JavaScript & Typescript
+> Currently, supports Python, Java, Go, Rust, Ruby C/C++, Lua, Shell, JavaScript & Typescript
 
 > Doesn't support windows or mac
 
