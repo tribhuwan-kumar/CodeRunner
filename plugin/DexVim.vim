@@ -25,8 +25,6 @@ function! GetShell(command)
             call RunTerminal(escaped_command, 'ash')
         elseif shell ==# "busybox"
             call RunTerminal(escaped_command, 'busybox')
-        elseif shell ==# "kitty"
-            call RunTerminal(escaped_command, 'kitty')
         else
             let g:shell = "Not supported shell"
             echo g:shell
