@@ -29,4 +29,4 @@ Use `vsplit` for vertical window & `botright split` for horizontal
 
 > Doesn't support windows or mac
 
-> Supported shells are bash, zsh, fish, kitty, shell, sh, csh, ksh, dash, tcsh & busybox
+> Supported shells are bash, zsh, fish, shell, sh, csh, ksh, dash, tcsh & busybox
