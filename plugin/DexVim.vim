@@ -40,14 +40,14 @@ let s:terminal_bufnr = -1
 
 function! RunTerminal(command, shell)
     if s:terminal_bufnr == -1
-        execute "vsplit | term " . a:shell . " -c " . a:command . ";exec " . a:shell
+        execute "term " . a:shell . " -c " . a:command . ";exec " . a:shell
         let s:terminal_bufnr = bufnr('%')
     else
         let term_win_id = bufwinnr(s:terminal_bufnr)
         if term_win_id != -1
             execute term_win_id . "wincmd w"
         else
-            execute "vsplit | term " . a:shell . " -c " . a:command . ";exec " . a:shell
+            execute "term " . a:shell . " -c " . a:command . ";exec " . a:shell
             let s:terminal_bufnr = bufnr('%')
         endif
     endif
