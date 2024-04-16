@@ -13,18 +13,6 @@ function! GetShell(command)
             call RunTerminal(escaped_command, 'fish')
         elseif shell ==# "sh"
             call RunTerminal(escaped_command, 'sh')
-        elseif shell ==# "ksh"
-            call RunTerminal(escaped_command, 'ksh')
-        elseif shell ==# "csh"
-            call RunTerminal(escaped_command, 'csh')
-        elseif shell ==# "tcsh"
-            call RunTerminal(escaped_command, 'tcsh')
-        elseif shell ==# "dash"
-            call RunTerminal(escaped_command, 'dash')
-        elseif shell ==# "ash"
-            call RunTerminal(escaped_command, 'ash')
-        elseif shell ==# "busybox"
-            call RunTerminal(escaped_command, 'busybox')
         else
             let g:shell = "Not supported shell"
             echo g:shell
