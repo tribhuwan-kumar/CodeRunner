@@ -18,11 +18,16 @@ Use vim-plug or any plugin installer
 Plug 'tribhuwan-kumar/DexVim'
 ```
 ### Configuration
-Use `:RunCode` for running code in Nvim
+- Use `:RunCode` for running code in Nvim
+- Bind `RunCode` with your leader
+- Use `vsplit` for vertical window & `botright split` for horizontal
 
-Bind `RunCode` with your leader
-
-Use `vsplit` for vertical window & `botright split` for horizontal
+Example:
+```vim
+:set splitright " for right side vsplit
+nnoremap <Leader>r :vsplit \| RunCode<CR>
+nnoremap <Leader>b :botright split \| RunCode<CR>
+```
 
 > [!NOTE]
 > Currently, supports Python, Java, Go, Rust, Ruby C/C++, Lua, Shell, JavaScript & Typescript
