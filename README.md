@@ -1,10 +1,4 @@
-# DexVim
-```bash
-_______ ______ __   __ _    _ _____  _    _
-|     | |_____   \ /    \  /    |    |\  /|
-|_____| |_____ __/ \__   \/   __|__  | \/ |
-
-```
+# CodeRunner
 ## A simple plugin for code running in Nvim
 
 ### Keyfeatures
@@ -15,7 +9,7 @@ _______ ______ __   __ _    _ _____  _    _
 ### Installation
 Use vim-plug or any plugin installer
 ```bash
-Plug 'tribhuwan-kumar/DexVim'
+Plug 'tribhuwan-kumar/CodeRunner'
 ```
 ### Configuration
 - Use `:RunCode` for running code in Nvim
