@@ -1,59 +1,46 @@
-" Check os and shell
+"+--Code Runner for NVIM---+
+" Aurthor: @tribhuwan-kumar
+
+" NVIM 'term' with default shell
+function! TermCmd(command, shell)
+    call s:deleteTermBuffers()
+    execute "term " . a:shell . " -c " . a:command . ";exec " . a:shell
+endfunction
+
+" Manage 'term' Bufs
+function! s:deleteTermBuffers() abort
+    for termBuf in filter(range(1, bufnr('$')), 'bufname(v:val) =~ "^term://"')
+        execute 'bdelete! ' . termBuf
+    endfor
+endfunction
+
+" Get shell
 function! GetShell(command)
     let escaped_command = shellescape(a:command, 2)
-
     if has('unix')
         let shell = substitute(system('basename $SHELL'), '\n', '', '')
-
         if shell ==# "bash"
-            call RunTerminal(escaped_command, 'bash')
+            call TermCmd(escaped_command, 'bash')
         elseif shell ==# "zsh"
-            call RunTerminal(escaped_command, 'zsh')
+            call TermCmd(escaped_command, 'zsh')
         elseif shell ==# "fish"
-            call RunTerminal(escaped_command, 'fish')
+            call TermCmd(escaped_command, 'fish')
         elseif shell ==# "sh"
-            call RunTerminal(escaped_command, 'sh')
+            call TermCmd(escaped_command, 'sh')
         else
             let g:shell = "Not supported shell"
             echo g:shell
         endif
     else
-        let g:os = "Not supported"
-        echo g:os
+        echo "Not supported"
     endif
 endfunction
 
-" Run terminal command based on shell
-let s:terminal_bufnr = -1
-
-function! RunTerminal(command, shell)
-    if s:terminal_bufnr == -1
-        execute "term " . a:shell . " -c " . a:command . ";exec " . a:shell
-        let s:terminal_bufnr = bufnr('%')
-    else
-        let term_win_id = bufwinnr(s:terminal_bufnr)
-        if term_win_id != -1
-            execute term_win_id . "wincmd w"
-        else
-            execute "term " . a:shell . " -c " . a:command . ";exec " . a:shell
-            let s:terminal_bufnr = bufnr('%')
-        endif
-    endif
-endfunction
-
-" Handle terminal window closure
-augroup TerminalWindow
-    autocmd!
-    autocmd TermClose * let s:terminal_bufnr = -1
-augroup END
-
-
-" Pass run command
+" Pass code run command
 function! CodeRun()
     let l:ext = expand("%:e") 
     let l:fullpath = expand("%:p") 
     let l:filename = expand("%:t:r")
-
     if l:ext == "py"
         call GetShell("python3 -u " . shellescape(l:fullpath)) 
     elseif l:ext == "js"
@@ -87,6 +74,17 @@ function! CodeRun()
     endif
 endfunction
 
+" Vertical window
+function! VRunCode()
+    execute 'vsplit' | call CodeRun()
+endfunction
+
+" Horizontal window
+function! HRunCode()
+    execute 'botright split' | call CodeRun()
+endfunction
+
+" Commands
 command! RunCode call CodeRun()
-
-
+command! VRunCode call VRunCode()
+command! HRunCode call HRunCode()
